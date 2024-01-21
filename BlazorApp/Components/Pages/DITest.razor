@@ -1,0 +1,38 @@
+﻿@page "/di"
+@using BlazorApp.Components.Data;
+
+@inject FoodService.IFoodService foodService
+@inject FoodService.PaymentService paymentService;
+
+@inject FoodService.SingletonService singleton;
+@inject FoodService.TransientService transient1;
+@inject FoodService.TransientService transient2;
+@inject FoodService.ScopedService scoped1;
+@inject FoodService.ScopedService scoped2;
+
+
+<div>
+    @foreach(var food in foodService.GetFoods())
+    {
+        <div>@food.Name</div>
+        <div>@food.Price</div>
+    }
+</div>
+
+<div>
+    <h1>Singleton</h1>
+    Guid: @singleton.ID
+    <h1>Transient</h1>
+    count: @transient1.ID / second count : @transient2.ID
+    <h1>Scoped</h1>
+    count: @scoped1.ID / second count: @scoped2.ID
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+}
