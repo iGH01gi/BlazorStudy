@@ -1,0 +1,11 @@
+﻿@page "/binding"
+@rendermode InteractiveServer
+
+<h3>Binding</h3>
+
+<p>Value: @_value</p>
+<input type="range" step="1" @bind="_value" />
+
+@code {
+    int _value = 15;
+}

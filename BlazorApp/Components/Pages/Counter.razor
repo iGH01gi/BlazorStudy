@@ -1,0 +1,26 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-secondary" @onclick="AutoIncrementCount">Auto Increment</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    void AutoIncrementCount()
+    {
+        var timer = new Timer(x => { InvokeAsync(() => { IncrementCount(); StateHasChanged();} );  }, null, 1000, 1000);
+    }
+
+}
