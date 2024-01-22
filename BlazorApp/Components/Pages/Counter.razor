@@ -1,4 +1,10 @@
 ﻿@page "/counter"
+@page "/counter/{CurrentCount:int}" //이런식으로 파라미터를 받을 수 있음
+
+@inject NavigationManager navManager; 
+
+@using BlazorApp.Components.Layout
+@layout MainLayout2
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
@@ -11,11 +17,16 @@
 <button class="btn btn-secondary" @onclick="AutoIncrementCount">Auto Increment</button>
 
 @code {
+    
+    [Parameter]
+    public int CurrentCount { get; set; }
+    
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+        navManager.NavigateTo("/");  //이런식으로 NavigationManager를 사용해서 링크이동 가능
     }
 
     void AutoIncrementCount()
